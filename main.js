@@ -2,68 +2,54 @@ var readlineSync = require ("readline-sync");
 
 var score = 0;
 
-var highScores = [
-  {
-    name : "tarun",
-    score : "5"
-  },{
-    name : "bunny",
-    score : "3"
-  }
-]
-
 var questions = [{
-  question : "Whats is my home town",
-  answer : "delhi"
-  },{
-  question : "Am i older than 25",
-  answer : "yes"
-  },{
-  question: "Am i single ?",
-  answer : "no"
-  },{
-  question: "Do i like bikes ?",
-  answer : "yes"
-  },{
-  question: "Did i made these question in array of objects ?",
-  answer : "yes"
-}];
+  qus : "Can H2R reach a top speed of 400?\n",
+  ans : "yes"
+},{
+  qus : "What is the colour of all kawasaki bikes ?\n",
+  ans : "green"
+},{
+  qus : "Is H2R road legal ?\n",
+  ans : "no"
+},{
+  qus : "Ducati panigale is a dry clutch bike ?\n",
+  ans : "yes"
+},{
+  qus : "What is the colour of ducati ?\n",
+  ans : "red"
+}]
 
 function welcome(){
-var userName = readlineSync.question("What's you name ?\n")
-console.log("");
-console.log("Welcome "+userName+" to my ##DO YOU KNOW ME GAME##");
-console.log("");}
-
-function play(question, answer){
-  var userAns = readlineSync.question(question+"\n");
-  if (userAns === answer){
-    console.log("you are right");
-    score=score+1;
-  }
-  else{
-    console.log("wrong");
-  }
+  console.log("Welcome to ******motorcycle quiz******");
   console.log("");
-  console.log("____________________________________________________");
+  var userName = readlineSync.question("What is your name ?");
+  console.log("");
 }
 
+function play(qus,ans){
+    var userAns = readlineSync.question(qus)
+  if(userAns.toUpperCase() === ans.toUpperCase()){
+    console.log("you are right");
+    score = score + 1;
+  }
+  else {
+    console.log("wrong")
+  }
+  console.log("");
+  console.log("current score = ",score);
+  console.log("");
+  console.log("-----------------------------------------------");
+}
 
 function game(){
-for(var i=0 ; i<questions.length ; i++){
-  var curqus = questions[i];
-    play(curqus.question,curqus.answer)
- }
-}
-
-function showScore(){
-  console.log("");
-  console.log(" yay you scored = ",score);
-  console.log("")
-  console.log("check out the other high scores, if you ping me i'll update yours too");
-  highScores.map(score => console.log(score.name, " : ", score.score))
+  for(var i=0 ; i<questions.length ; i++){
+    var currentqus = questions[i];
+    play(currentqus.qus,currentqus.ans)
+  }
 }
 
 welcome();
 game();
-showScore();
+console.log("");
+console.log("your final socre is = ",score);
+console.log("Thank you for playing");
